@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
     {
@@ -15,12 +16,18 @@ const routes: Routes = [
     },
     {
         path: '',
-        component: HomeComponent
-    }
+        component: HomeComponent,
+        canActivate: [AuthGuard]
+    },
+    // {
+    //     path: '**',
+    //     component: HomeComponent,
+    //     canActivate: [AuthGuard]
+    // }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {enableTracing: true})],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

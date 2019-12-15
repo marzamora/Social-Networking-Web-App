@@ -1,6 +1,10 @@
 
 <h3>Login</h3>
 
+<nav class="navbar">
+        <button (click)="goHome()" class="btn btn-danger" >Home</button>
+    </nav>
+
 <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">
         <label>E-mail Address</label>

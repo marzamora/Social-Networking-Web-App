@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -14,6 +15,10 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { HomeComponent } from './home/home.component';
 
 import { environment } from 'src/environments/environment.prod';
+
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { UploadService } from './storage/upload.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +33,10 @@ import { environment } from 'src/environments/environment.prod';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,22 @@
 <h1>Home Feed</h1>
+
+<nav class="navbar">
+    <button (click)="signOut()" class="btn btn-danger" >Sign Out</button>
+</nav>
+
+<div id="feed">
+    <!-- Show feed -->
+</div>
+
+<form [formGroup]="yapForm" (ngSubmit)="postYap()">
+    <label>Post a yap</label>
+    <div class="form-group">
+        <textarea formControlName="yap" cols="30" rows="10" placeholder="What's on your mind?" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <input type="file" (change)="handleFile($event)">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Post</button>
+    </div>
+</form>

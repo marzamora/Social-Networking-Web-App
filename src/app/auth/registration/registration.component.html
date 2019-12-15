@@ -1,6 +1,14 @@
 <h3>Account Registration</h3>
 <form [formGroup]="registrationForm" (ngSubmit)="regUser()">
     <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" formControlName="lastName">
+    </div>
+    <div class="form-group">
         <label>E-mail Address</label>
         <input type="email" class="form-control" formControlName="email">
     </div>
