@@ -11,7 +11,7 @@ import { UploadService } from '../storage/upload.service';
 })
 export class HomeComponent implements OnInit {
 
-  file: File;
+  private file: File;
 
   constructor(private auth: AuthService, private db: AngularFirestore, private upload: UploadService) { }
 
@@ -24,17 +24,25 @@ export class HomeComponent implements OnInit {
 
   postYap() {
 
-    // this.upload.uploadFile(this.file);
+    let user = this.auth.getUser();
+
+    // this.uploadFile(this.file);
 
     this.db.collection('yaps').add({
       yap: this.yapForm.get('yap').value,
-      uid: this.auth.currentUser.uid,
+      name: user.displayName,
+      date: Date(), 
+      uid: user.uid,
       // imagePath: this.upload.getFilePath()
     });
   }
 
-  handleFile(event) {
-    this.file = event.target.file;
+  handleFile($event) {
+    this.file = $event.target.file;
+  }
+
+  uploadFile(file: File) {
+    this.upload.uploadFile(file);
   }
 
   signOut() {

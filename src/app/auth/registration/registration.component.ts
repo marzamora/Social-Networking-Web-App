@@ -24,7 +24,6 @@ export class RegistrationComponent implements OnInit {
 
   regUser() {
     this.auth.createUser(this.registrationForm.value);
-    this.router.navigate(['']);
   }
 
 }

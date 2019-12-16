@@ -1,35 +1,32 @@
+// DOCS: https://firebase.google.com/docs/storage/web/upload-files
+
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
 
-  private baseFilePath: string = '/images';
-  private filePath: string;
+  private task: AngularFireUploadTask;
 
+  // private storageRef: any;
+  public downloadURL: string;
+  
+  // private imagesRef: any = this.storageRef.child('images');
 
-  constructor(private fbStorage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage, private auth: AuthService) { }
 
   uploadFile(file: File) {
 
-    // this.filePath = '$this.baseFilePath/$file.name';
-    this.filePath = this.baseFilePath + '/' + file.name;
+    var path = 'images/${file.name}';
 
-    let uploadTask = this.fbStorage.ref(this.baseFilePath).child(this.filePath).put(file);
+    let storageRef = this.storage.ref(path);
 
-    uploadTask
-    .then(() => {
-      console.log('File upload Success')
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    this.task = storageRef.put(file); 
+    
   }
 
-  getFilePath() {
-    return this.filePath;
-  }
 
 }

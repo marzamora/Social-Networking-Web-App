@@ -1,9 +1,9 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Yapper</a>
+    <button (click)="goHome()" class="btn btn-outline-light" type="button" >Home</button>
+</nav>
 
 <h3>Login</h3>
-
-<nav class="navbar">
-        <button (click)="goHome()" class="btn btn-danger" >Home</button>
-    </nav>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">

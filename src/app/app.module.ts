@@ -19,13 +19,15 @@ import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { UploadService } from './storage/upload.service';
+import { YapsComponent } from './components/yaps/yaps.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    YapsComponent
   ],
   imports: [
     BrowserModule,
