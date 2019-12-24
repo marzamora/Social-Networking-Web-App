@@ -18,10 +18,7 @@ export class YapsComponent implements OnInit {
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
-    this.yaps = this.db.collection('yaps').valueChanges();
-    this.yaps.subscribe( items => {
-      console.log(items);
-    });
+    this.yaps = this.db.collection('yaps').valueChanges(); 
   }
 
 }

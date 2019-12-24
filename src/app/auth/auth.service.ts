@@ -11,7 +11,7 @@ export class AuthService {
 
   newUser: any;
   isLoggedIn: boolean;
-  currentUser: any;
+  currentUser: any = null;
 
   constructor(
     private afAuth: AngularFireAuth,
