@@ -20,6 +20,7 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { UploadService } from './storage/upload.service';
 import { YapsComponent } from './components/yaps/yaps.component';
+import { SocialLoginComponent } from './components/social-login/social-login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { YapsComponent } from './components/yaps/yaps.component';
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
-    YapsComponent
+    YapsComponent,
+    SocialLoginComponent
   ],
   imports: [
     BrowserModule,

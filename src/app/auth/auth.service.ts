@@ -70,7 +70,7 @@ export class AuthService {
     this.afAuth.auth.signOut();
     this.router.navigate(['/login']);
   }
-  // Add user doc to firestore
+  // Add user doc to firestore TODO: refactor to setUserData
   insertUserData(userCredential: firebase.auth.UserCredential) {
     this.db.collection('users').add({
       first: this.newUser.firstName,
@@ -86,6 +86,13 @@ export class AuthService {
 
   getUser() {
     return this.currentUser;
+  }
+
+  // waits for popup to resolve
+  async signInWithGoogle() {
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    return this.insertUserData(credential);
   }
 
 }
