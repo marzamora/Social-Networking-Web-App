@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  socialProvider: string;
+
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +28,19 @@ export class LoginComponent implements OnInit {
 
   goHome() {
     this.router.navigate(['/']);
+  }
+
+  recieveSocialSignIn($event) {
+    this.socialProvider = $event;
+    switch (this.socialProvider) {
+      case "google":
+        this.auth.signInWithGoogle();
+        break;
+      case "facebook":
+        break;
+      default:
+        break;
+    }
   }
 
 }
