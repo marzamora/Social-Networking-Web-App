@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { auth } from 'firebase';
+import { auth } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -70,12 +70,15 @@ export class AuthService {
     this.afAuth.auth.signOut();
     this.router.navigate(['/login']);
   }
-  // Add user doc to firestore TODO: refactor to setUserData
+  // Add user doc to firestore 
+  // TODO: refactor to setUserData
   insertUserData(userCredential: firebase.auth.UserCredential) {
     this.db.collection('users').add({
       first: this.newUser.firstName,
       last: this.newUser.lastName,
       email: this.newUser.email
+    }).catch( error => {
+      console.log(error);
     });
   }
   
@@ -92,6 +95,7 @@ export class AuthService {
   async signInWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
+    this.router.navigate(['/']);
     return this.insertUserData(credential);
   }
 
