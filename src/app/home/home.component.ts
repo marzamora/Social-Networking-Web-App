@@ -11,7 +11,7 @@ import { UploadService } from '../storage/upload.service';
 })
 export class HomeComponent implements OnInit {
 
-  private file: File;
+  private file: File = null;
 
   constructor(private auth: AuthService, private db: AngularFirestore, private upload: UploadService) { }
 
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
     let user = this.auth.getUser();
 
-    // this.uploadFile(this.file);
+    this.uploadFile(this.file);
 
     this.db.collection('yaps').add({
       yap: this.yapForm.get('yap').value,
@@ -39,6 +39,8 @@ export class HomeComponent implements OnInit {
 
   handleFile($event) {
     this.file = $event.target.file;
+    //! File is undefined
+    console.log('Handled file with name: ' + this.file.name);
   }
 
   uploadFile(file: File) {

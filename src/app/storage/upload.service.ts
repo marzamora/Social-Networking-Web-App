@@ -11,7 +11,6 @@ export class UploadService {
 
   private task: AngularFireUploadTask;
 
-  // private storageRef: any;
   public downloadURL: string;
   
   // private imagesRef: any = this.storageRef.child('images');
@@ -20,11 +19,13 @@ export class UploadService {
 
   uploadFile(file: File) {
 
-    var path = 'images/${file.name}';
+    let path = `images/${file.name}`;
 
-    let storageRef = this.storage.ref(path);
+    let imgRef = this.storage.ref(path);
 
-    this.task = storageRef.put(file); 
+    imgRef.put(file).then(snapshot => {
+      console.log('Successfully uploaded image.');
+    }); 
     
   }
 
