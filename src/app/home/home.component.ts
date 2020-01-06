@@ -11,7 +11,7 @@ import { UploadService } from '../storage/upload.service';
 })
 export class HomeComponent implements OnInit {
 
-  private file: File = null;
+  private file: File | null = null;
 
   constructor(private auth: AuthService, private db: AngularFirestore, private upload: UploadService) { }
 
@@ -37,8 +37,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  handleFile($event) {
-    this.file = $event.target.file;
+  handleFile(event) {
+    const file = event.target.files[0];
+    this.file = file;
     //! File is undefined
     console.log('Handled file with name: ' + this.file.name);
   }
