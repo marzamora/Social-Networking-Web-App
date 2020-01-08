@@ -11,7 +11,7 @@ export class UploadService {
 
   private task: AngularFireUploadTask;
 
-  public downloadURL: string;
+  public downloadURL: string = "";
   
   // private imagesRef: any = this.storageRef.child('images');
 

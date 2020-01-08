@@ -1,12 +1,15 @@
 <div class="list-group" >    
     <div class="list-group-item" *ngFor="let yap of yaps | async; let i = index">
         <div class="d-flex w-100 justify-content-between">
-            <!-- <h5>{{yap.name}}</h5> -->
             <small>{{yap.date}}</small>
         </div>
         <p class="mb-1">
             {{yap.yap}}
         </p>
+        <div *ngIf="yap.imageURL">
+            <img [src]="yap.imageURL" alt="">
+            <p>TEST</p>
+        </div>
         <small class="text-muted">{{yap.name}}</small>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from '../auth/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -10,6 +10,8 @@ import { UploadService } from '../storage/upload.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('fileInput', {static: false}) fileInput: ElementRef;
 
   private file: File | null = null;
 
@@ -26,8 +28,12 @@ export class HomeComponent implements OnInit {
 
     let user = this.auth.getUser();
 
-    this.uploadFile(this.file);
+    if (this.file){
+      this.uploadFile(this.file);
+    }
 
+    // TODO Previous URL is getting used.
+    // TODO Yap is getting posted before image
     this.db.collection('yaps').add({
       yap: this.yapForm.get('yap').value,
       name: user.displayName,
@@ -35,12 +41,18 @@ export class HomeComponent implements OnInit {
       uid: user.uid,
       imageURL: this.upload.getDownloadURL()
     });
+
+    // Clear Yap Input and File Input
+    this.yapForm.reset();
+    this.fileInput.nativeElement.value = null;
+    this.file = null;
+
+
   }
 
   handleFile(event) {
     const file = event.target.files[0];
     this.file = file;
-    //! File is undefined
     console.log('Handled file with name: ' + this.file.name);
   }
 
