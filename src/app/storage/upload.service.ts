@@ -23,11 +23,19 @@ export class UploadService {
 
     let imgRef = this.storage.ref(path);
 
-    imgRef.put(file).then(snapshot => {
+    let uploadTask = imgRef.put(file)
+    
+    uploadTask.then(snapshot => {
       console.log('Successfully uploaded image.');
     }); 
-    
+
+    uploadTask.task.snapshot.ref.getDownloadURL().then( (downloadURL) => {
+      this.downloadURL = downloadURL;
+    });
   }
 
+  getDownloadURL() {
+    return this.downloadURL;
+  }
 
 }

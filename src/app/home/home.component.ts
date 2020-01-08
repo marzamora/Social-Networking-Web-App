@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       name: user.displayName,
       date: Date(), 
       uid: user.uid,
-      // imagePath: this.upload.getFilePath()
+      imageURL: this.upload.getDownloadURL()
     });
   }
 
