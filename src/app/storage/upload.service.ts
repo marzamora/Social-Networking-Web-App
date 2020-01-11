@@ -1,7 +1,7 @@
 // DOCS: https://firebase.google.com/docs/storage/web/upload-files
 
 import { Injectable } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -9,9 +9,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class UploadService {
 
-  private task: AngularFireUploadTask;
-
-  public downloadURL: string = "";
+  private downloadURL: string = "";
   
   // private imagesRef: any = this.storageRef.child('images');
 
@@ -27,11 +25,10 @@ export class UploadService {
     
     uploadTask.then(snapshot => {
       console.log('Successfully uploaded image.');
+      snapshot.ref.getDownloadURL().then( (downloadURL) => {
+        this.downloadURL = downloadURL;
+      });
     }); 
-
-    uploadTask.task.snapshot.ref.getDownloadURL().then( (downloadURL) => {
-      this.downloadURL = downloadURL;
-    });
   }
 
   getDownloadURL() {

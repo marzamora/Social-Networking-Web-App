@@ -7,8 +7,9 @@
             {{yap.yap}}
         </p>
         <div *ngIf="yap.imageURL">
-            <img [src]="yap.imageURL" alt="">
-            <p>TEST</p>
+            <!-- TODO change image style to align right -->
+            <!-- TODO Add image modal -->
+            <img [src]="yap.imageURL" alt="" class="img-thumbnail yap-img">
         </div>
         <small class="text-muted">{{yap.name}}</small>
     </div>

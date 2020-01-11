@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
       this.uploadFile(this.file);
     }
 
+
     // TODO Previous URL is getting used.
     // TODO Yap is getting posted before image
     this.db.collection('yaps').add({
@@ -42,7 +43,9 @@ export class HomeComponent implements OnInit {
       imageURL: this.upload.getDownloadURL()
     });
 
-    // Clear Yap Input and File Input
+    console.log("sent yap to firestore");
+
+    // Clear Form Input and File Input
     this.yapForm.reset();
     this.fileInput.nativeElement.value = null;
     this.file = null;
