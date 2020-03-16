@@ -1,27 +1,27 @@
-<nav class="navbar navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Yapper</a>
     <button (click)="goHome()" class="btn btn-outline-light" type="button" >Home</button>
-</nav>
+</nav> -->
 
-<h3>Login</h3>
 
-<div class="col">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <div class="form-group">
-            <label>E-mail Address</label>
-            <input formControlName="email" type="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input formControlName="password" type="password" class="form-control">
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-block btn-primary">Login</button>
-        </div>
-        <div class="form-group">
-            <a routerLink="/register">Register Account</a>
-        </div>
-    </form>
+<div class="col login-container">
+    <div class="inner-wrapper">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+                <!-- Email Input -->
+                <input formControlName="email" type="email" class="form-control" placeholder="E-mail Address"> 
+            </div>
+            <div class="form-group">
+                <!-- Password Input -->
+                <input formControlName="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group no-p-m">
+                <button type="submit" class="btn btn-block btn-primary">Login</button>
+            </div>
+            <div class="form-group no-p-m" style="text-align: center;">
+                <a routerLink="/register" class="text-primary">Register Account</a>
+            </div>
+            <app-social-login (socialSignInEvent)="recieveSocialSignIn($event)"></app-social-login>
+        </form>
+    </div>
 </div>
-
-<app-social-login (socialSignInEvent)="recieveSocialSignIn($event)"></app-social-login>

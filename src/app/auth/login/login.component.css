@@ -1,0 +1,45 @@
+.login-container {
+    display: flex;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    height: fill-available;
+    justify-content: center;
+    align-items: center;
+    
+    background: linear-gradient(-145deg, #4da7db, #5bc6ff);;
+}
+
+.inner-wrapper {
+    display: flex;
+    height: -webkit-fit-content;
+    height: fit-content;
+    width: 500px;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
+    background: #fffdf9;
+}
+
+.no-p-m {
+    padding: 0px;
+    margin: 0;
+}
+
+a {
+    font-size: .9rem;
+    line-height: 1.8rem;
+}
+
+form {
+    width: 90%;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+    form {
+        width: 90%; 
+    }
+  }
