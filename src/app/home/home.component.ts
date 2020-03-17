@@ -11,7 +11,7 @@ import { UploadService } from '../storage/upload.service';
 })
 export class HomeComponent implements OnInit {
 
-  @ViewChild('fileInput', {static: false}) fileInput: ElementRef;
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   private file: File | null = null;
 
