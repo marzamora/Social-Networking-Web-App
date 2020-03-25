@@ -4,9 +4,6 @@
 </nav>
 
 <div class="container">
-    <h1 class="title">Home Feed</h1>
-
-    <app-yaps></app-yaps>
 
     <form [formGroup]="yapForm" (ngSubmit)="postYap()">
         <label>Post a yap</label>
@@ -20,4 +17,7 @@
             <button type="submit" class="btn btn-success">Post</button>
         </div>
     </form>
+
+    <app-yaps></app-yaps>
+
 </div>
