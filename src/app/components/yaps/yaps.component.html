@@ -1,7 +1,7 @@
 <div class="list-group" >    
     <div class="list-group-item" *ngFor="let yap of yaps | async; let i = index">
         <div class="d-flex w-100 justify-content-between">
-            <small>{{yap.date}}</small>
+            <small>{{yap.date | date}}</small>
         </div>
         <p class="mb-1">
             {{yap.yap}}
