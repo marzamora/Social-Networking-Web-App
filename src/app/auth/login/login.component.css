@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     
-    background: linear-gradient(-145deg, #4da7db, #5bc6ff);;
+    background: #6d6d6d;
 }
 
 .inner-wrapper {
@@ -26,6 +26,10 @@
 .no-p-m {
     padding: 0px;
     margin: 0;
+}
+
+.sign-up-btn {
+    padding: 8px 0px;
 }
 
 a {
