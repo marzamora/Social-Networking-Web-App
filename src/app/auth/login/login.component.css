@@ -2,7 +2,7 @@
     display: flex;
     height: -webkit-fill-available;
     height: -moz-available;
-    height: fill-available;
+    height: stretch; /* Was fill-available */
     justify-content: center;
     align-items: center;
     
