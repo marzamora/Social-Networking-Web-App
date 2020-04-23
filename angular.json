@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "yapper"
+    }
+  },
+  "defaultProject": "yapper",
+  "cli": {
+    "analytics": false
+  }
 }

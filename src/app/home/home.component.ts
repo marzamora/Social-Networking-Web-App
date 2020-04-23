@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit {
     this.db.collection('yaps').add({
       yap: this.yapForm.get('yap').value,
       name: user.displayName,
-      date: Date(), 
+      date: Date(),
+      timePosted: Date.now(), 
       uid: user.uid,
       imageURL: this.upload.getDownloadURL()
     });
