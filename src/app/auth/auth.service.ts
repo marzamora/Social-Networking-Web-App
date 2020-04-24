@@ -45,7 +45,7 @@ export class AuthService {
         console.log('Error updating displayName.')
       });
       // insert user record
-      this.insertUserData(this.newUser);
+      this.updateUserData(this.newUser);
       // Navigate to home after registering
       this.router.navigate(['']);
     })
@@ -73,7 +73,7 @@ export class AuthService {
   }
   // Add user doc to firestore 
   // TODO: refactor to setUserData
-  insertUserData(userCredential: firebase.auth.UserCredential) {
+  updateUserData(userCredential: firebase.auth.UserCredential) {
     this.db.collection('users').add({
       first: this.newUser.firstName,
       last: this.newUser.lastName,
@@ -97,7 +97,7 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     this.router.navigate(['/']);
-    return this.insertUserData(credential);
+    return this.updateUserData(credential);
   }
 
 }
