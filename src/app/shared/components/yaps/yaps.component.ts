@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { yaps } from './yaps.model';
+import { yaps } from '../../shared/models/yaps.model';
 
 @Component({
   selector: 'app-yaps',
