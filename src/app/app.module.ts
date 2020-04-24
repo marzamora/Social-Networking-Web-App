@@ -21,6 +21,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UploadService } from './storage/upload.service';
 import { YapsComponent } from './shared/components/yaps/yaps.component';
 import { SocialLoginComponent } from './shared/components/social-login/social-login.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SocialLoginComponent } from './shared/components/social-login/social-lo
     RegistrationComponent,
     HomeComponent,
     YapsComponent,
-    SocialLoginComponent
+    SocialLoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
