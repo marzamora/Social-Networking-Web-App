@@ -11,7 +11,7 @@ export class AuthService {
 
   newUser: any;
   isLoggedIn: boolean;
-  currentUser: any = null;
+  user: any = null;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -21,11 +21,12 @@ export class AuthService {
     // Observable attached to global auth object
     this.afAuth.auth.onAuthStateChanged( (user) => {
       if(user) {
+        this.user = user;
         console.log('uid: ' + user.uid);
-        this.currentUser = user;
+        console.log('USER', user);
       } else{
-        this.currentUser = null;
-        console.log('User is succesfully signed out!');
+        this.user = null;
+        console.log('No user is logged in.');
       }
     });
 
@@ -83,12 +84,12 @@ export class AuthService {
   }
   
   isAuthenticated(): boolean {
-    console.log('Current user: ' + this.currentUser);
-    return this.currentUser !== null;
+    console.log('Current user: ' + this.user);
+    return this.user !== null;
   }
 
   getUser() {
-    return this.currentUser;
+    return this.user;
   }
 
   // waits for popup to resolve
