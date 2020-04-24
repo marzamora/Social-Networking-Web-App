@@ -19,8 +19,8 @@ import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { UploadService } from './storage/upload.service';
-import { YapsComponent } from './components/yaps/yaps.component';
-import { SocialLoginComponent } from './components/social-login/social-login.component';
+import { YapsComponent } from './shared/components/yaps/yaps.component';
+import { SocialLoginComponent } from './shared/components/social-login/social-login.component';
 
 @NgModule({
   declarations: [
