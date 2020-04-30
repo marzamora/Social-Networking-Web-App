@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { User } from '../user/user.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators'
 
 @Injectable({
@@ -22,22 +22,13 @@ export class AuthService {
     private db: AngularFirestore,
     private router: Router
   ) {
-    // Observable attached to global auth object
-    this.afAuth.auth.onAuthStateChanged( (user) => {
-      if(user) {
-        this.user = user;
-        console.log('uid: ' + user.uid);
-        console.log('USER', user);
-      } else{
-        this.user = null;
-        console.log('No user is logged in.');
-      }
-    });
-
+    
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
           return this.db.doc<User>(`users/${user.uid}`).valueChanges();
+        } else {
+          return of(null);
         }
       })
     )
@@ -86,6 +77,7 @@ export class AuthService {
   // Add user doc to firestore 
   // TODO: refactor to setUserData
   updateUserData({uid, email, photoURL, displayName}: User) {
+
     const userRef: AngularFirestoreDocument<User> = this.db.doc<User>(`users/${uid}`);
 
     const data = {
@@ -94,6 +86,8 @@ export class AuthService {
       photoURL,
       displayName
     }
+    
+    return userRef.set(data, { merge: true} )
   }
   
   isAuthenticated(): boolean {
