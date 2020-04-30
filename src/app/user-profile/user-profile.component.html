@@ -1,1 +1,17 @@
-<p>user-profile works!</p>
+<div *ngIf="auth.user$ | async; then authenticated"></div>
+
+<ng-template #authenticated>
+    <div *ngIf="auth.user$ | async as user" class="fluid-container pt-5">
+        <img  [src]="user.photoURL" class="img-thumbnail rounded mx-auto d-block profile-photo">
+        <h1 class="title text-center py-4">{{ user.displayName }}</h1>
+        <ul class="list-group px-5">
+            <li class="list-group-item">UID: {{ user.uid }}</li>
+            <li class="list-group-item">E-mail: {{ user.email }}</li>
+        </ul>
+        <!-- <button (click)="auth.logout()">Logout</button> -->
+    </div>
+</ng-template>
+
+<ng-template #guest>
+    <h5 class="subtitle" style="text-align: center;">Hi there! Please <a [routerLink]="['/login']">Login</a> to view this page</h5>
+</ng-template>
