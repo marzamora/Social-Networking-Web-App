@@ -8,6 +8,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
+    {
         path: 'login',
         component: LoginComponent,
         // canDeActivate: TODO
@@ -21,7 +26,7 @@ const routes: Routes = [
         component: UserProfileComponent
     },
     {
-        path: '',
+        path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard]
     },
