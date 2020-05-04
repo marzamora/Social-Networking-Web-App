@@ -22,6 +22,8 @@ import { UploadService } from './storage/upload.service';
 import { YapsComponent } from './shared/components/yaps/yaps.component';
 import { SocialLoginComponent } from './shared/components/social-login/social-login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     HomeComponent,
     YapsComponent,
     SocialLoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService, AuthGuard, UploadService],
   bootstrap: [AppComponent]

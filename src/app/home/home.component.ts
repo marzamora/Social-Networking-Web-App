@@ -64,9 +64,4 @@ export class HomeComponent implements OnInit {
     this.upload.uploadFile(file);
   }
 
-  signOut() {
-    console.log("Signing out ...");
-    this.auth.logout();
-  }
-
 }

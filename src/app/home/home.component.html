@@ -1,12 +1,7 @@
-<nav class="navbar navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Yapper</a>
-    <button (click)="signOut()" class="btn btn-outline-danger" type="button" >Sign Out</button>
-</nav>
-
 <div class="container">
 
     <form [formGroup]="yapForm" (ngSubmit)="postYap()">
-        <label>Post a yap</label>
+        <label>Post something:</label>
         <div class="form-group">
             <textarea formControlName="yap" cols="35" rows="6" placeholder="What's on your mind?" class="form-control"></textarea>
         </div>
