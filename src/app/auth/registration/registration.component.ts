@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/user/user.model';
 
 @Component({
   selector: 'app-registration',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -22,8 +24,14 @@ export class RegistrationComponent implements OnInit {
     password: new FormControl('')
   });
 
+  
+
   regUser() {
-    this.auth.createUser(this.registrationForm.value);
+    this.auth.createUser(this.registrationForm.value).then( res=> {
+      this.router.navigate(['home']);
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

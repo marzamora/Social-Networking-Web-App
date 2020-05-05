@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs/operators'
 export class AuthService {
 
   user$: Observable<User>;
-  newUser: any;
+  newUser: User;
   isLoggedIn: boolean;
   user: User = null;
 
@@ -37,22 +37,20 @@ export class AuthService {
 
   // Create user with email and password
   createUser(user) {
-    this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+    return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
     .then( userCredential => {
-      this.newUser = user;
-      console.log(userCredential);
-      console.log('Success!');
+      if (userCredential) {
+        this.newUser = userCredential.user;
+        this.updateUserData(this.newUser);
+      }
       userCredential.user.updateProfile({
-        displayName: user.firstName + ' ' + user.lastName
+        displayName: user.firstName + " " + user.lastName
+      }).then( () => {
+        this.updateUserData(this.newUser);
       }).catch( error => {
         console.log('Error updating displayName.')
       });
-      // insert user record
-      this.updateUserData(this.newUser);
-      // Navigate to home after registering
-      this.router.navigate(['']);
-    })
-    .catch( error => {
+    }).catch( error => {
       console.log(error)
     });
   }
@@ -86,7 +84,7 @@ export class AuthService {
       displayName
     }
     
-    return userRef.set(data, { merge: true} )
+    return userRef.set(data, { merge: true} );
   }
 
   // TODO: Delete this maybe or update it it
