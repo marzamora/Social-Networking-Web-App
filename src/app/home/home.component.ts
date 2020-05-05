@@ -37,10 +37,8 @@ export class HomeComponent implements OnInit {
         });
       });
     } else {      
-      this.uploadPostData();
+      this.uploadPostData("");
     }
-    // TODO Previous URL is getting used.
-    // TODO Yap is getting posted before image
     // Clear Form Input and File Input
     this.yapForm.reset();
     this.fileInput.nativeElement.value = null;
@@ -55,7 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   uploadFile(file: File) {
-    return this.upload.uploadFile(file)
+    return this.upload.uploadFile(file);
   }
 
   uploadPostData(downloadURL?: String) {
