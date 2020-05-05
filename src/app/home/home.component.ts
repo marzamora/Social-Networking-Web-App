@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   postYap() {
 
-    let user = this.auth.getUser();
+    let userData = this.auth.getCurrentUserData();
 
     if (this.file){
       this.uploadFile(this.file);
@@ -37,10 +37,10 @@ export class HomeComponent implements OnInit {
     // TODO Yap is getting posted before image
     this.db.collection('yaps').add({
       yap: this.yapForm.get('yap').value,
-      name: user.displayName,
+      name: userData.displayName,
       date: Date(),
       timePosted: Date.now(), 
-      uid: user.uid,
+      uid: userData.uid,
       imageURL: this.upload.getDownloadURL()
     });
 

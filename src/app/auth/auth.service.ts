@@ -15,7 +15,7 @@ export class AuthService {
   user$: Observable<User>;
   newUser: any;
   isLoggedIn: boolean;
-  user: any = null;
+  user: User = null;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -74,8 +74,7 @@ export class AuthService {
     this.afAuth.auth.signOut();
     this.router.navigate(['/login']);
   }
-  // Add user doc to firestore 
-  // TODO: refactor to setUserData
+  
   updateUserData({uid, email, photoURL, displayName}: User) {
 
     const userRef: AngularFirestoreDocument<User> = this.db.doc<User>(`users/${uid}`);
@@ -89,14 +88,15 @@ export class AuthService {
     
     return userRef.set(data, { merge: true} )
   }
-  
+
+  // TODO: Delete this maybe or update it it
   isAuthenticated(): boolean {
     console.log('Current user: ' + this.user);
     return this.user !== null;
   }
 
-  getUser() {
-    return this.user;
+  getCurrentUserData(): User {
+    return this.afAuth.auth.currentUser;
   }
 
   // waits for popup to resolve
