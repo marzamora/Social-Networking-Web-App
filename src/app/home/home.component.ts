@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   private file: File | null = null;
+  private yapText: String = "";
 
   constructor(private auth: AuthService, private db: AngularFirestore, private upload: UploadService) { }
 
@@ -26,31 +27,24 @@ export class HomeComponent implements OnInit {
 
   postYap() {
 
-    let userData = this.auth.getCurrentUserData();
+    this.yapText = this.yapForm.get('yap').value;
 
     if (this.file){
-      this.uploadFile(this.file);
+      this.uploadFile(this.file).then( snapshot => {
+        snapshot.ref.getDownloadURL().then( (downloadURL) => {
+          // this.downloadURL = downloadURL;
+          this.uploadPostData(downloadURL);
+        });
+      });
+    } else {      
+      this.uploadPostData();
     }
-
-
     // TODO Previous URL is getting used.
     // TODO Yap is getting posted before image
-    this.db.collection('yaps').add({
-      yap: this.yapForm.get('yap').value,
-      name: userData.displayName,
-      date: Date(),
-      timePosted: Date.now(), 
-      uid: userData.uid,
-      imageURL: this.upload.getDownloadURL()
-    });
-
-    console.log("sent yap to firestore");
-
     // Clear Form Input and File Input
     this.yapForm.reset();
     this.fileInput.nativeElement.value = null;
     this.file = null;
-
 
   }
 
@@ -61,7 +55,19 @@ export class HomeComponent implements OnInit {
   }
 
   uploadFile(file: File) {
-    this.upload.uploadFile(file);
+    return this.upload.uploadFile(file)
+  }
+
+  uploadPostData(downloadURL?: String) {
+    let userData = this.auth.getCurrentUserData();
+    this.db.collection('yaps').add({
+      yap: this.yapText,
+      name: userData.displayName,
+      date: Date(),
+      timePosted: Date.now(), 
+      uid: userData.uid,
+      imageURL: downloadURL
+    });
   }
 
 }

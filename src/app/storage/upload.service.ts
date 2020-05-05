@@ -9,8 +9,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class UploadService {
 
-  private downloadURL: string = "";
-  
+  private downloadURL: String = "";
   // private imagesRef: any = this.storageRef.child('images');
 
   constructor(private storage: AngularFireStorage, private auth: AuthService) { }
@@ -29,8 +28,11 @@ export class UploadService {
         this.downloadURL = downloadURL;
       });
     }); 
+
+    return uploadTask;
   }
 
+  // ! Deprecated for now. Don't need it.
   getDownloadURL() {
     return this.downloadURL;
   }
