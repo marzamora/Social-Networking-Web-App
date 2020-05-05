@@ -10,7 +10,7 @@ export class NavbarComponent implements OnInit {
 
   public isNavbarOpen: boolean = false;
 
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit(): void { }
 

@@ -23,7 +23,7 @@
     </div>
 
     <!-- TODO: Hide if user is logged in-->
-    <button (click)="signOut()" class="btn btn-outline-danger" type="button">Sign Out</button>
+    <button *ngIf="auth.user$ | async" (click)="signOut()" class="btn btn-outline-danger" type="button">Sign Out</button>
 </nav>
 
 <!-- <nav class="navbar navbar-dark bg-dark">
