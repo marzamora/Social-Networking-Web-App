@@ -15,7 +15,6 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent,
-        // canDeActivate: TODO
     },
     {
         path: 'register',
@@ -23,7 +22,8 @@ const routes: Routes = [
     },
     {
         path: 'profile',
-        component: UserProfileComponent
+        component: UserProfileComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'home',
