@@ -16,9 +16,11 @@ export class UploadService {
 
   uploadFile(file: File) {
 
-    let path = `images/${file.name}`;
+    let userId = this.auth.getCurrentUserData().uid;
 
-    let imgRef = this.storage.ref(path);
+    let userPath = `user/${userId}/images/${file.name}`;
+
+    let imgRef = this.storage.ref(userPath);
 
     let uploadTask = imgRef.put(file)
     
@@ -31,10 +33,4 @@ export class UploadService {
 
     return uploadTask;
   }
-
-  // ! Deprecated for now. Don't need it.
-  getDownloadURL() {
-    return this.downloadURL;
-  }
-
 }
