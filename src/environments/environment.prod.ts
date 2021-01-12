@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "",
+    apiKey: "AIzaSyDEXiwFZJLkf3kh8vmCyumrQatpzPDzJUk",
     authDomain: "yapper-37102.firebaseapp.com",
     databaseURL: "https://yapper-37102.firebaseio.com",
     projectId: "yapper-37102",
