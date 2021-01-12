@@ -1,1 +1,2 @@
-# Yapper - Facebook Clone
+# Yapper - Social Network
+
