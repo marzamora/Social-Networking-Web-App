@@ -4,7 +4,7 @@ A social networking application. Users can login and post messages along with im
 
 ## Deployment
 
-Deployed with Firebase Hosting
+Deployed with [Firebase Hosting](https://firebase.google.com/docs/hosting)
 
 ## Built With
 
