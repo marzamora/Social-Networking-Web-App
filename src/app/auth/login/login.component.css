@@ -1,8 +1,6 @@
 .login-container {
     display: flex;
-    height: -webkit-fill-available;
-    height: -moz-available;
-    height: stretch; /* Was fill-available */
+    height: 94vh;
     justify-content: center;
     align-items: center;
     
